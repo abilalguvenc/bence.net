@@ -206,7 +206,7 @@ function handleCheck(args)
 {
     console.log('args :', args);
 
-    post("selectCourseAdmin.php" ,{selectedCourse: args.value})
+    post("anketlerim.php" ,{selectedCourse: args.value})
 }
 
 function addSession(args)

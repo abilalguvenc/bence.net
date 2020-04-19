@@ -152,7 +152,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 2 )
     }   
     
     // buralara redirect ekranı gelmesi cok iyi olur
-     header("Location:selectCourseAdmin.php");
+     header("Location:anketlerim.php");
 }else{
     header("Location:index.php");
 }
