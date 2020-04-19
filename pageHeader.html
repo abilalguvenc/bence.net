@@ -1,0 +1,56 @@
+
+<head>
+    <meta charset="utf8_turkish_ci">
+<title> bence.net - Çevrimiçi Anket Sitesi - Ücretsiz Anket Yapın </title>
+   <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="style/styleFlex.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="style/styleModal.css" type="text/css" media="screen" />
+   <script src="js/utils.js"></script>
+
+
+   
+   <div id="pageHeader"><table width="100%" border="0" cellspacing="0" cellpadding="12">
+      <tr>
+        <td><a href="http://localhost/bence"><img src="./images/header_logo.png" alt="Logo" height="45" border="0" />
+      </tr>
+      <tr>
+        <td colspan="2" >
+          <div  class="SegmentButton" >
+            <div class="topnav">
+                <a href="http://localhost/bence">Anasayfa</a>
+                <a href="anketler.php">Anketler</a>
+ 
+                <div class="topnav-right">
+                <?php echo $rightMenu ?>
+                </div>
+              </div>
+        </div>
+        </td>
+        </tr>
+      </table>
+    </div>
+
+
+    
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" method="POST" action="login.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="images/logo.png" >
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Kullanıcı Adı</b></label>
+      <input type="text" placeholder="Kullanıcı adı" name="uname" id="uname" required>
+
+      <label for="psw"><b>Şifre</b></label>
+      <input type="password" placeholder="Şifre" name="psw" id="psw" required>
+      <button  type="submit">Giriş</button>
+    </div>
+    <div class="container" style="background-color:#e0e0e0">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">İptal</button>
+      <span class="psw"> <a href="#"> Şifremi unuttum! (YAKINDA)</a></span>
+    </div>
+  </form>
+</div>

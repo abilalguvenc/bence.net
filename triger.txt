@@ -1,0 +1,6 @@
+delimiter //
+create trigger trick before insert on enrolled 
+for each row 
+begin
+  set new.esnum = 0;
+end ; //
