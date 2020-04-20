@@ -9,18 +9,14 @@ $students = mysqli_query($con ,"select *  from student " );
 {
     header("Location:index.php");
 }
-
+/*
 $studentList = "";
-
-
 $studentList .='<table id="studentTable">
 <tr>
 <th></th>
 <th>ID</th>
 <th>isim</th>
 </tr>';
-
-
 while($row = mysqli_fetch_array($students , MYSQLI_ASSOC))
 {
        $studentList .='<tr id="studentTable">';
@@ -30,6 +26,7 @@ while($row = mysqli_fetch_array($students , MYSQLI_ASSOC))
        $studentList .='</tr>';
 }
 $studentList .= '</table>';
+*/
 ?>
 
 
@@ -38,54 +35,95 @@ $studentList .= '</table>';
 <?php include "pageHeader.php"; ?>
 
 
-<table class="center" style="width:80%;">
-    <tr>
-        <th style="width:60%;">
-            Bütün Öğrenciler
-        </th>
-        
-        <th>
-            Yeni Öğrenci
-        </th>
-    </tr>
+<table style="width:80%; margin: auto; border: 3px solid rgb(200, 200, 200);">
+  <tr>
+      <th>
+          Yeni Anket
+      </th>
+  </tr>
 
-    <tr>
-        <td>
-            <div class="vertical-menu">
-                <?php echo $studentList; ?>
-            </div>
-        </td>
+  <tr>
+      <td >
+          <div style="width:80%; margin: auto;" class="vertical-menu">
+            <br>
+            Anket İsmi
+            <br>
+            <input type="text" id="newsnum" value="">
+            <br> <br>
 
-        <td >
-            <div class="vertical-menu">
-                Öğrenci Numarası:<br>
-                <input type="text" id="newsnum" value="">
-                <br>
+            Açıklama
+            <br>
+            <input type="text" id="newsname" value="">
+            <br> <br>
 
-                Öğrenci İsmi:<br>
-                <input type="text" id="newsname" value="">
-                <br>
-
-                Hesap Şifresi:<br>
-                <input type="text" id="newpw" value="">
-                <br>
-            </div>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <button onclick="deleteSelectedStudent()">
-                Öğrenciyi Sil
-            </button>
-        </td>
-
-        <td>
+            1. Soru
+            <br>
+            <input type="text" id="newpw" value="">
+            <br> <br>
+            
             <button onclick="addStudent()">
-                Öğrenci Ekle
+              Soru Ekle
             </button>
-        </td>
-    </tr>
+            <br> <br>
+          </div>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <button onclick="addStudent()">
+              Anketi Oluştur
+          </button>
+      </td>
+  </tr>
+  <!-- 
+  <tr>
+      <th style="width:60%;">
+          Bütün Öğrenciler
+      </th>
+      
+      <th>
+          Yeni Öğrenci
+      </th>
+  </tr>
+
+  <tr>
+      <td>
+          <div class="vertical-menu">
+              <?php echo $studentList; ?>
+          </div>
+      </td>
+
+      <td >
+          <div class="vertical-menu">
+              Öğrenci Numarası:<br>
+              <input type="text" id="newsnum" value="">
+              <br>
+
+              Öğrenci İsmi:<br>
+              <input type="text" id="newsname" value="">
+              <br>
+
+              Hesap Şifresi:<br>
+              <input type="text" id="newpw" value="">
+              <br>
+          </div>
+      </td>
+  </tr>
+
+  <tr>
+      <td>
+          <button onclick="deleteSelectedStudent()">
+              Öğrenciyi Sil
+          </button>
+      </td>
+
+      <td>
+          <button onclick="addStudent()">
+              Öğrenci Ekle
+          </button>
+      </td>
+  </tr>
+  -->
 </table>
 
 

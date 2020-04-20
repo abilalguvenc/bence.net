@@ -212,9 +212,8 @@ ul {
 
 .center {
 	margin: auto;
-	border: 3px solid rgb(33, 122, 173);
-  }
-
+	border: 3px solid rgb(200, 200, 200);
+}
 
 /* collapsible css */
 .collapsible {

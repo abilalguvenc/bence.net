@@ -120,30 +120,20 @@ $courseSessions .= '</div>';
 }
 
 
-
-
-
-
-
 ?>
 
 <?php include "pageHeader.php"; ?>
 
 
-<table class="center" style="width:80%;">
+<table style="width:80%; margin: auto; border: 3px solid rgb(200, 200, 200);">
     <tr>    
         <th>
-            Mevcut Dersler
+            Anketlerim
         </th>
 
         <th>
-            Seçili Ders Vakitleri
+            Seçili Anketin Bilgileri
         </th>
-        
-        <th>
-            Yeni Ders Ekle
-        </th>
-
     </tr>
 
     <tr>
@@ -152,44 +142,21 @@ $courseSessions .= '</div>';
                 <?php echo $listAvailable; ?>
             </div>
         </td>
+
         <td>
-
         <?php echo $courseSessions; ?>
-
-        </td>
-        <td >
-            <div class="vertical-menu">
-            
-            Ders Adı:<br>
-            <input type="text" id="cname" value="">
-            <br>
-            Ders Bilgisi:<br>
-            <input type="text" id="info" value="">
-            <br>
-        
-            </div>
         </td>
     </tr>
 
     <tr>
         <td>
-            <button onclick="deleteSelectedCourseAdmin()">
-                Ders Sil
-            </button>
-
         </td>
 
         <td>
-
-
-        </td>
-
-        <td >
-           <button onclick="addCourseAdmin()">
-                Ders Ekle
+            <button onclick="deleteSelectedCourseAdmin()">
+                Seçili Anketi Sil
             </button>
         </td>
-
     </tr>
 </table>
 

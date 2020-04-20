@@ -67,7 +67,7 @@ if ($rowcount > 0) {
 <?php include "pageHeader.php"; ?>
 
 
-<div class="center" style="width:80%">
+<div style="width:80%; margin: auto; border: 3px solid rgb(200, 200, 200);">
 
 <table >
 <tr>
