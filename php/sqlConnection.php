@@ -3,13 +3,13 @@
 $db_host = "localhost"; 
 $db_username = "root";  
 $db_pass = "";  
-$db_name = "school"; 
+$db_name = "bence"; 
 
-$con = mysqli_connect($db_host,$db_username,$db_pass) or die ("could not connect to mysql");
+$con = mysqli_connect($db_host,$db_username,$db_pass) or die ("MySQL bağlantısı sağlanamadı.");
 
 mysqli_set_charset($con ,'utf8');
 
-mysqli_select_db($con,$db_name) or die ("no database"); 
+mysqli_select_db($con,$db_name) or die ("Bence isminde veritabanı bulunamadı."); 
 
 
 function setError($msg)
@@ -48,12 +48,6 @@ function getDay($dayNum)
             break;
     }
 }
-
-
-
-
-
-
 
 
 ?>
