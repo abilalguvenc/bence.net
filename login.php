@@ -6,7 +6,6 @@ if( isset($_SESSION['login'] ))
     echo "log out suff...";
     session_destroy();
     session_start();
-
 }
 
 if(isset($_REQUEST ["uname"]) )
@@ -40,7 +39,7 @@ if(isset($_REQUEST ["uname"]) )
                 $rowcount=mysqli_num_rows($result);
             if($rowcount > 0)
             {
-                $_SESSION['login'] = 2; // admin logged in
+                $_SESSION['login'] = 2; // company logged in
     
                 $info = mysqli_fetch_array($result , MYSQLI_ASSOC);
     
@@ -52,14 +51,11 @@ if(isset($_REQUEST ["uname"]) )
                 exit();
             }
         }
-        //$_SESSION['login'] = 0; // login failed
         session_destroy();
         echo "Giriş işlemi başarısız.";
         header("Location:loginfailed.php");
         exit();
     }
 }
-
-
 ?>
 

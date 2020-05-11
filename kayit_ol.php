@@ -1,12 +1,36 @@
 <?php
 include "php/sqlConnection.php";
 
-if( isset($_SESSION["login"]) )
-{
-  
-} else
+if( isset($_SESSION["login"]) && (($_SESSION['login'] == 1) || ($_SESSION['login'] == 2)) )
 {
   header("Location:index.php");
+}
+
+if( isset($_SESSION["error_mail"]) && ($_SESSION["error_mail"] != 0) ) 
+{
+  $error_mail = $_SESSION["error_mail"];
+  $_SESSION["error_mail"] = 0;
+} else 
+{
+  $error_mail = 0;
+}
+
+if( isset($_SESSION["error_name"]) && ($_SESSION["error_name"] != 0) ) 
+{
+  $error_name = $_SESSION["error_name"];
+  $_SESSION["error_name"] = 0;
+} else 
+{
+  $error_name = 0;
+}
+
+if( isset($_SESSION["error_pass"]) && ($_SESSION["error_pass"] != 0) ) 
+{
+  $error_pass = $_SESSION["error_pass"];
+  $_SESSION["error_pass"] = 0;
+} else 
+{
+  $error_pass = 0;
 }
 ?>
 
@@ -15,7 +39,7 @@ if( isset($_SESSION["login"]) )
 <table style="width:80%; margin: auto; border: 3px solid rgb(200, 200, 200);">
   <tr>
       <th>
-          Yeni Anket
+          Yeni Kullanıcı Kaydı
       </th>
   </tr>
 
@@ -23,14 +47,29 @@ if( isset($_SESSION["login"]) )
       <td >
           <div style="width:80%; margin: auto;" class="vertical-menu">
             <br>
-            Anket İsmi
+            <h4>Firma kaydı yapmak için <a href="firma_kayit.php">buraya</a> tıklayınız.</h4>
+
             <br>
-              <input type="text" id="sname" value="">
+            Kullanıcı İsmi
+            <?php if($error_name == 2) echo "(Bu alan boş bırakılamaz.)"; ?>
+            <br>
+              <input type="text" id="name" value="">
             <br> <br>
 
-            Açıklama
+            E-Posta Adresi
+            <?php 
+              if($error_mail == 1) echo "(E-Posta zaten kayıtlı.)";
+              else if($error_mail == 2) echo "(Bu alan boş bırakılamaz.)";
+              else if($error_mail == 3) echo "(Hatalı E-Posta adresi.)";
+            ?>
             <br>
-              <input type="text" id="info" value="">
+              <input type="text" id="email" value="">
+            <br> <br>
+
+            Şifre
+            <?php if($error_pass == 2) echo "(Bu alan boş bırakılamaz.)"; ?>
+            <br>
+              <input type="text" id="password" value="">
             <br> <br>
 
             <br> <br>
@@ -39,8 +78,8 @@ if( isset($_SESSION["login"]) )
   </tr>
   <tr>
       <td>
-          <button onclick="createSurvey()">
-              Anketi Oluştur
+          <button onclick="createUser()">
+              Kayıt Ol
           </button>
       </td>
   </tr>
@@ -53,13 +92,13 @@ if( isset($_SESSION["login"]) )
 
 
 <script>
-  function createSurvey()
+  function createUser()
   {
-    var sid = "getDate().value;"
-    var sname = document.getElementById("sname").value;
-    var info = document.getElementById("info").value;
+    var new_name = document.getElementById("name").value;
+    var new_email = document.getElementById("email").value;
+    var new_password = document.getElementById("password").value;
     
-    post("insertSurvey.php" , {createSurvey:true, sid:sid, sname:sname, info:info });
+    post("insertUser.php" , {createUser:true, new_name:new_name, new_email:new_email, new_password:new_password });
   }
 </script>
 

@@ -1,67 +1,70 @@
 <?php
 include "php/sqlConnection.php";
 
-$result = mysqli_query($con ,"SELECT * FROM course");
+$result = mysqli_query($con ,"SELECT * FROM survey");
 
 $rowcount = 0;
 
 if($result == true)
     $rowcount=mysqli_num_rows($result);
 
-
- $courseList = '';
-
- $studentInfo = '';
+ $surveyList = '';
 
 if ($rowcount > 0) {
 
- 
- 
     while($row = mysqli_fetch_array($result , MYSQLI_ASSOC))
     {
-
-
       // begin new
-      $courseList .= '<button class="collapsible">'  .$row["cname"].  '</button>';
-      $courseList .= '<div class="content">';
-      $courseList .= '<br>';
-      $courseList .= '<h3>Anket Bilgisi</h3>';
-      $courseList .= '<p>'. $row["courseInfo"]   .'  </p>';
+      $surveyList .= '<button class="collapsible">'  .$row["sname"].  '</button>';
+      $surveyList .= '<div class="content">';
+      $surveyList .= '<br>';
+      $surveyList .= '<h2>'. $row["sname"]   .'  </h2>';
+      $surveyList .= '<h3>Anketi Oluşturan</h3>';
+      $surveyList .= '<p>'. $row["creator"]   .'  </p>';
+      $surveyList .= '<h3>Açıklama</h3>';
+      $surveyList .= '<p>'. $row["info"]   .'  </p>';
 
-      $schedules = mysqli_query($con ,"SELECT * FROM course_schedule WHERE scname = '". $row["cname"]."'");
+      $schedules = mysqli_query($con ,"SELECT * FROM question_selection WHERE sid = '". $row["sid"]."'");
       if(!!$schedules)
       {
-        $courseList .= '<h4>Sorular</h4>';
-        $courseList .='<table>
+        $surveyList .= '<h4>Sorular</h4>';
+        $surveyList .='<table>
         <tr>
-        <th>Gün</th>
-        <th>Başlangıç</th>
-        <th>Bitiş</th>
-        <th>Sınıf</th>
+        <th>Soru Metni</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
         </tr>';
        
         while($srow = mysqli_fetch_array($schedules  , MYSQLI_ASSOC))
         { 
-          $courseList .='<tr>';
-          $courseList .= '<td> '.  getDay($srow["meets_on"])   .'  </td>';
-          $courseList .= '<td> '. $srow["meets_at"]   .'  </td>';
-          $courseList .= '<td> '.   $srow["ends_at"]   .'  </td>';
-          $courseList .= '<td> '.   $srow["room"]   .'  </td>';
-          $courseList .='</tr>';
-        
+          $surveyList .='<tr>';
+          // $surveyList .= '<td> '.  getDay($srow["question"])   .'  </td>';
+          $surveyList .= '<td> '. $srow["question"] .'  </td>';
+          $surveyList .= '<td> '. $srow["sel_1"]    .'  </td>';
+          $surveyList .= '<td> '. $srow["sel_2"]    .'  </td>';
+          $surveyList .= '<td> '. $srow["sel_3"]    .'  </td>';
+          $surveyList .= '<td> '. $srow["sel_4"]    .'  </td>';
+          $surveyList .= '<td> '. $srow["sel_5"]    .'  </td>';
+          $surveyList .='</tr>';
         }  
         
-        $courseList .= '</table>';
-        $courseList .= '<br>';
+        $surveyList .= '</table>';
+        $surveyList .= '<br>';
       }
       else
-        $courseList .= '<h4>Henüz anket sorusu eklenmemiştir.</h4>';
+        $surveyList .= '<h4>Henüz anket sorusu eklenmemiştir.</h4>';
 
-      $courseList .= '</div>';
+      $surveyList .= '</div>';
     }
 
 
-}
+} else 
+  $surveyList .= 'Sistemde kayıtlı anket bulunamadı.'
+
+
 ?>
 
 <?php include "pageHeader.php"; ?>
@@ -71,12 +74,12 @@ if ($rowcount > 0) {
 
 <table >
 <tr>
-<th width = "80%">Bütün Anketler</th>
+  <th width = "80%">Bütün Anketler</th>
 </tr>
 <tr>
-<td>
- <?php echo $courseList; ?>
-</td>
+  <td>
+    <?php echo $surveyList; ?>
+  </td>
 </tr>
 </table>
 </div>

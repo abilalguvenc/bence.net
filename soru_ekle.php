@@ -8,6 +8,10 @@ if( isset($_SESSION["login"]) )
 {
   header("Location:index.php");
 }
+
+$sid = $_SESSION['sid'];
+$sname = $_SESSION['sname'];
+$qnumber = $_SESSION['question_number'];
 ?>
 
 <?php include "pageHeader.php"; ?>
@@ -15,7 +19,7 @@ if( isset($_SESSION["login"]) )
 <table style="width:80%; margin: auto; border: 3px solid rgb(200, 200, 200);">
   <tr>
       <th>
-          Yeni Anket
+          <?php echo "$sname (Anket No: $sid)"; ?>
       </th>
   </tr>
 
@@ -23,24 +27,44 @@ if( isset($_SESSION["login"]) )
       <td >
           <div style="width:80%; margin: auto;" class="vertical-menu">
             <br>
-            Anket İsmi
+              <?php echo "$qnumber. Soru"; ?>
             <br>
-              <input type="text" id="sname" value="">
+              <input type="text" id="question" value="">
             <br> <br>
 
-            Açıklama
+            A)
             <br>
-              <input type="text" id="info" value="">
+              <input type="text" id="s1" value="">
             <br> <br>
 
+            B)
+            <br>
+              <input type="text" id="s2" value="">
+            <br> <br>
+
+            C)
+            <br>
+              <input type="text" id="s3" value="">
+            <br> <br>
+            
+            D)
+            <br>
+              <input type="text" id="s4" value="">
+            <br> <br>
+            
+            E)
+            <br>
+              <input type="text" id="s5" value="">
+            <br> <br>
+            
             <br> <br>
           </div>
       </td>
   </tr>
   <tr>
       <td>
-          <button onclick="createSurvey()">
-              Anketi Oluştur
+          <button onclick="addQuestion()">
+              Soruyu Ekle
           </button>
       </td>
   </tr>
@@ -53,13 +77,16 @@ if( isset($_SESSION["login"]) )
 
 
 <script>
-  function createSurvey()
+  function addQuestion()
   {
-    var sid = "getDate().value;"
-    var sname = document.getElementById("sname").value;
-    var info = document.getElementById("info").value;
+    var question = document.getElementById("question").value;
+    var s1 = document.getElementById("s1").value;
+    var s2 = document.getElementById("s2").value;
+    var s3 = document.getElementById("s3").value;
+    var s4 = document.getElementById("s4").value;
+    var s5 = document.getElementById("s5").value;
     
-    post("insertSurvey.php" , {createSurvey:true, sid:sid, sname:sname, info:info });
+    post("insertQuestion.php" , {insertQuestion:true, question:question, s1:s1, s2:s2, s3:s3, s4:s4, s5:s5 });
   }
 </script>
 

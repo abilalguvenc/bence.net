@@ -1,9 +1,10 @@
 <?php
 include "php/sqlConnection.php";
 
-if( isset($_SESSION["login"] ) && $_SESSION["login"] == 2 )
+if( isset($_SESSION["login"]) )
 {
-$available = mysqli_query($con ,"select *  from course" );
+  $email = $_SESSION["email"];
+  $available = mysqli_query($con ,"select * from survey where cmail = '$email'" );
 
 }else
 {
@@ -16,12 +17,13 @@ $listAvailable= "";
 while($row = mysqli_fetch_array($available , MYSQLI_ASSOC))
 {
     $listAvailable .= '<label class="chkcontainer">';
-    $listAvailable .= $row["cname"];
+    $listAvailable .= $row["sname"];
     if(isset($_POST["selectedCourse"]) && $_POST["selectedCourse"] ==$row["cname"]   )
     {
     $listAvailable .= '<input type="radio" checked="true" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["cname"] .'" >';
     }else
-    $listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["cname"] .'" >';
+    //$rowcname = $row["cname"];
+    //$listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $rowcname.'" >';
     $listAvailable .= '<span class="checkmark"></span>';
     $listAvailable .= '</label>';
 }
