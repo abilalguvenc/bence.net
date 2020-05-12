@@ -15,7 +15,7 @@ if ($rowcount > 0) {
     while($row = mysqli_fetch_array($result , MYSQLI_ASSOC))
     {
       // begin new
-      $surveyList .= '<button class="collapsible">'  .$row["sname"].  '</button>';
+      $surveyList .= '<button class="collapsible">'  .$row["sname"].  ' ('.$row["sid"].')</button>';
       $surveyList .= '<div class="content">';
       $surveyList .= '<br>';
       $surveyList .= '<h2>'. $row["sname"]   .'  </h2>';
@@ -56,9 +56,8 @@ if ($rowcount > 0) {
       }
       else
         $surveyList .= '<h4>Henüz anket sorusu eklenmemiştir.</h4>';
-      $iddd = '$row["sid"]';
-      $linkurl = 'location.href="anketa.php?id='.$iddd.'&q=1&sel=0"';
-      $surveyList .= '<button onclick=\'location.href="anketa.php?id='.$iddd.'"\'>
+      $iddd = $row["sid"];
+      $surveyList .= '<button onclick=\'location.href="anket.php?id='. $iddd .'"\'>
                           Ankete Katıl
                       </button>';
 
