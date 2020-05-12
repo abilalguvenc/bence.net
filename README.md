@@ -2,7 +2,7 @@
 Çevrimiçi Anket Sitesi - bence.net
 
 ## Gerekli Yazılımlar
-- XAMPP https://www.apachefriends.org/tr/index.html
+- XAMPP https://www.apachefriends.org/tr/index.html (Bende kurulu olan sürüm: v3.2.4)
 - MySQL (XAMPP ile kuruluyor olabilir. Tekrardan kurmak gerekli mi bilmiyorum.)
 
 ## Sunucuyu Yayınlama
@@ -26,3 +26,4 @@ CREATE TABLE `bence`.`answer_record` ( `sid` TEXT NOT NULL , `uid` TEXT NOT NULL
 CREATE TABLE `bence`.`vars` ( `type` TEXT NOT NULL , `var` TEXT NOT NULL ) ENGINE = InnoDB;
 INSERT INTO `vars` (`type`, `var`) VALUES ('sid', '0');
 ```
+- XAMPP ile yayınlanan siteye http://localhost/bence/ adresi üzerinden ulaşabilirsiniz.
