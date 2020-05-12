@@ -1,6 +1,7 @@
 # bence.net
 Çevrimiçi Anket Sitesi - bence.net
 
+<!-- Youtube Linki: https://youtu.be/S5sR_pAn3Wg -->
 [![Videoyu izlemek için tıklayın.](https://raw.githubusercontent.com/bilalguvenc/bence.net/master/images/youtube_thumbnail.png)](https://youtu.be/S5sR_pAn3Wg "![Videoyu izlemek için tıklayın.](https://raw.githubusercontent.com/bilalguvenc/bence.net/master/images/youtube_thumbnail.png)")
 
 ## Gerekli Yazılımlar
