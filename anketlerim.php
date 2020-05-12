@@ -18,12 +18,11 @@ while($row = mysqli_fetch_array($available , MYSQLI_ASSOC))
 {
     $listAvailable .= '<label class="chkcontainer">';
     $listAvailable .= $row["sname"];
-    if(isset($_POST["selectedCourse"]) && $_POST["selectedCourse"] ==$row["cname"]   )
+    if(isset($_POST["selectedSurvey"]) && $_POST["selectedSurvey"] ==$row["sid"]   )
     {
-    $listAvailable .= '<input type="radio" checked="true" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["cname"] .'" >';
-    }else
-    //$rowcname = $row["cname"];
-    $listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $rowcname.'" >';
+      $listAvailable .= '<input type="radio" checked="true" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["sid"] .'" >';
+    }
+    $listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["sid"].'" >';
     $listAvailable .= '<span class="checkmark"></span>';
     $listAvailable .= '</label>';
 }
@@ -32,7 +31,7 @@ $courseSessions = '';
 
 
 
-if(isset($_POST["selectedCourse"]))
+if(isset($_POST["selectedSurvey"]))
 {
 
     $courseSessions .='<table id="innerTable">
@@ -46,55 +45,63 @@ if(isset($_POST["selectedCourse"]))
                       </tr>';
 
 
-    $selectedCourse = $_POST["selectedCourse"];
+    $selectedSurvey = $_POST["selectedSurvey"];
 
-    $_SESSION["selectedCourseName"] = $selectedCourse ;
-
-
-     $courseSessions .= '<h4>Anket İsmi Buraya Gelicek</h4>';
-     $schedules = mysqli_query($con ,"SELECT * FROM course_schedule WHERE scname = '$selectedCourse'");
-     while($srow = mysqli_fetch_array($schedules  , MYSQLI_ASSOC))
-     { 
-       $value = "'". $selectedCourse ."," . $srow["meets_at"] ."'";
-
-       $courseSessions .='<tr>';// value="'.$value.'
-       $courseSessions .= '<td> '.  getDay($srow["meets_on"])   .'  </td>';
-       $courseSessions .= '<td> '. $srow["meets_at"]   .'  </td>';
-       $courseSessions .= '<td> '.   $srow["ends_at"]   .'  </td>';
-       $courseSessions .= '<td> '.   $srow["room"]   .'  </td>';
-       $courseSessions .= '<td> <button class="rowInput" onclick="deleteSession('.$value.')">Sil</button>  </td>';
-       $courseSessions .='</tr>';
-     
-     }
+    $_SESSION["selectedSurveyName"] = $selectedSurvey ;
 
 
-     $courseSessions .='<tr>
+    $rez = mysqli_query($con ,"SELECT * FROM survey WHERE sid='$selectedSurvey'");
+    $rowcount = 0;
+    if($rez == true)
+      $rowcount=mysqli_num_rows($rez);
+    if ($rowcount > 0) {
+      while($rww = mysqli_fetch_array($rez , MYSQLI_ASSOC))
+      {
+        $sname = $rww["sname"];
+        $info = $rww["info"];
+      }
+    }
+    $courseSessions .= '<h4>'.$sname.'</h4>';
+    $schedules = mysqli_query($con ,"SELECT * FROM question_selection WHERE sid = '$selectedSurvey'");
+    while($srow = mysqli_fetch_array($schedules  , MYSQLI_ASSOC))
+    { 
+      //$value = "'". $selectedSurvey ."," . $srow["sid"] ."'";
 
-<td><select  class="rowInput" id="s_meets_on" >
-<option value="0">Pazartesi</option>
-<option value="1">Salı</option>
-<option value="2">Çarsamba</option>
-<option value="3">Perşembe</option>
-<option value="4">Cuma</option>
-<option value="5">Cumartesi</option>
-<option value="6">Pazar</option>
-</select>
-</td>
-<td> 0
-</td>
-<td> 1
-</td>
-<td>
- 2
-</td>
-<td> 3  </td>
-<td> 3  </td>
-</tr>';
+      $courseSessions .='<tr>';
+      $courseSessions .= '<td> '. $srow["question_number"].'. '.$srow["question"] .'  </td>';
+      if( $srow["sel_1"] != null ) $ans = $srow["ans_1"]; else $ans = '';
+      $courseSessions .= '<td> '. $ans .'  </td>';
+      if( $srow["sel_2"] != null ) $ans = $srow["ans_2"]; else $ans = '';
+      $courseSessions .= '<td> '. $ans .'  </td>';
+      if( $srow["sel_3"] != null ) $ans = $srow["ans_3"]; else $ans = '';
+      $courseSessions .= '<td> '. $ans .'  </td>';
+      if( $srow["sel_4"] != null ) $ans = $srow["ans_4"]; else $ans = '';
+      $courseSessions .= '<td> '. $ans .'  </td>';
+      if( $srow["sel_5"] != null ) $ans = $srow["ans_5"]; else $ans = '';
+      $courseSessions .= '<td> '. $ans .'  </td>';
+      $courseSessions .='</tr>';
+    }
+    //$courseSessions .=' <tr>
+    //                      <td> 0 </td>
+    //                      <td> 1 </td>
+    //                      <td> 2 </td>
+    //                      <td> 3 </td>
+    //                      <td> 4 </td>
+    //                      <td> 5 </td>
+    //                    </tr>';
 
-$courseSessions .= '</table>';
-$courseSessions .= '<br>';
-$courseSessions .= '</div>';
-
+    $courseSessions .= '</table>';
+    $courseSessions .= '<br>';
+    $courseSessions .= '</div>';
+    //$courseSessions .= '<tr> 
+    //                      <td>
+    //                      </td> 
+    //                      <td>
+    //                        <button onclick="deleteselectedSurveyAdmin()">
+    //                          Seçili Anketi Sil
+    //                        </button>
+    //                      </td>
+    //                    </tr>';
 }
 
 
@@ -125,17 +132,6 @@ $courseSessions .= '</div>';
         <?php echo $courseSessions; ?>
         </td>
     </tr>
-
-    <tr>
-        <td>
-        </td>
-
-        <td>
-            <button onclick="deleteSelectedCourseAdmin()">
-                Seçili Anketi Sil
-            </button>
-        </td>
-    </tr>
 </table>
 
 
@@ -151,7 +147,7 @@ function handleCheck(args)
 {
     console.log('args :', args);
 
-    post("anketlerim.php" ,{selectedCourse: args.value})
+    post("anketlerim.php" ,{selectedSurvey:args.value})
 }
 
 function addSession(args)
@@ -190,7 +186,7 @@ post("selectCoursePost.php" ,{removeSession: true , sessionValues:deleteItem })
 }
 
 
-function deleteSelectedCourseAdmin(args)
+function deleteselectedSurveyAdmin(args)
 {
 var items = document.getElementsByClassName("cid_allCourses");
 var i;

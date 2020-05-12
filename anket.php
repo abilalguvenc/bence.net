@@ -1,9 +1,6 @@
 <?php
 include "php/sqlConnection.php";
 
-$arr = array_map("htmlspecialchars", $_POST, array_fill(0, sizeof($_POST), ENT_COMPAT));
-
-//?id=3&q=2
 $sid = htmlspecialchars($_GET["id"], ENT_COMPAT);
 
 $sname = null;
