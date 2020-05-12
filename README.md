@@ -2,7 +2,7 @@
 Çevrimiçi Anket Sitesi - bence.net
 
 ## Gerekli Yazılımlar
-- XAMPP 
+- XAMPP https://www.apachefriends.org/tr/index.html
 - MySQL (XAMPP ile kuruluyor olabilir. Tekrardan kurmak gerekli mi bilmiyorum.)
 
 ## Sunucuyu Yayınlama
