@@ -11,7 +11,7 @@ if( isset($_SESSION['login'] ))
 if(isset($_REQUEST ["uname"]) )
 {
     if(isset($_REQUEST ["psw"]) )
-    {
+    {   
         $uname = $_REQUEST ["uname"];
         $password = $_REQUEST ["psw"];
         
