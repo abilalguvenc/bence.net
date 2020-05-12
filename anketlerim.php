@@ -61,7 +61,7 @@ if(isset($_POST["selectedSurvey"]))
         $info = $rww["info"];
       }
     }
-    $courseSessions .= '<h4>'.$sname.'</h4>';
+    $courseSessions .= '<h4>'.$sname.' ('.$selectedSurvey.')</h4>';
     $schedules = mysqli_query($con ,"SELECT * FROM question_selection WHERE sid = '$selectedSurvey'");
     while($srow = mysqli_fetch_array($schedules  , MYSQLI_ASSOC))
     { 
@@ -93,15 +93,17 @@ if(isset($_POST["selectedSurvey"]))
     $courseSessions .= '</table>';
     $courseSessions .= '<br>';
     $courseSessions .= '</div>';
-    //$courseSessions .= '<tr> 
-    //                      <td>
-    //                      </td> 
-    //                      <td>
-    //                        <button onclick="deleteselectedSurveyAdmin()">
-    //                          Seçili Anketi Sil
-    //                        </button>
-    //                      </td>
-    //                    </tr>';
+    $courseSessions .= '<tr> 
+                          <td>
+                              <input type="text" value="http://localhost/bence/anket.php?id='.$selectedSurvey.'" id="myInput">
+                          </td> 
+                          <td>
+                              <button onclick="copyLink()">Paylaş</button>
+                          </td>
+                        </tr>';
+
+
+
 }
 
 
@@ -141,7 +143,20 @@ if(isset($_POST["selectedSurvey"]))
 <?php include "pageFooter.html"; ?>
 
 <script>
+function copyLink() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
 
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  //alert("Bağlantı Kopyalandı: " + copyText.value);
+}
 
 function handleCheck(args)
 {
