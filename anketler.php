@@ -56,6 +56,11 @@ if ($rowcount > 0) {
       }
       else
         $surveyList .= '<h4>Henüz anket sorusu eklenmemiştir.</h4>';
+      $iddd = '$row["sid"]';
+      $linkurl = 'location.href="anketa.php?id='.$iddd.'&q=1&sel=0"';
+      $surveyList .= '<button onclick=\'location.href="anketa.php?id='.$iddd.'"\'>
+                          Ankete Katıl
+                      </button>';
 
       $surveyList .= '</div>';
     }

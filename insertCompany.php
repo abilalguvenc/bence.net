@@ -68,14 +68,14 @@ if( isset($_SESSION['login']) )
                 header("Location:firma_kayit.php");
             } else
             {
-                $sql = "INSERT INTO user (name, email_address, password) VALUES ('$name', '$email', '$password')";
+                $sql = "INSERT INTO company (name, email_address, password, tax_number) VALUES ('$fname', '$email', '$password', '$taxnum')";
                 $result = mysqli_query($con, $sql);
 
                 if($result)
                 {
-                    $_SESSION['login'] = 1;
+                    $_SESSION['login'] = 2;
                     $_SESSION['email'] =  $email;
-                    $_SESSION['username'] =  $name;
+                    $_SESSION['username'] =  $fname;
                     echo "başarılı";
                     header("Location:index.php");
                 }else

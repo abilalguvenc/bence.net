@@ -37,11 +37,12 @@ if(isset($_POST["selectedCourse"]))
 
     $courseSessions .='<table id="innerTable">
                       <tr>
-                      <th>Ders Günü</th>
-                      <th>Başlangıç Saati</th>
-                      <th>Bitiş Saati</th>
-                      <th>Ders Sınıfı</th>
-                      <th>Ekle/Sil</th>
+                      <th>Soru Metni</th>
+                      <th>A Sayısı</th>
+                      <th>B Sayısı</th>
+                      <th>C Sayısı</th>
+                      <th>D Sayısı</th>
+                      <th>E Sayısı</th>
                       </tr>';
 
 
@@ -50,7 +51,7 @@ if(isset($_POST["selectedCourse"]))
     $_SESSION["selectedCourseName"] = $selectedCourse ;
 
 
-     $courseSessions .= '<h4>Ders Saatleri</h4>';
+     $courseSessions .= '<h4>Anket İsmi Buraya Gelicek</h4>';
      $schedules = mysqli_query($con ,"SELECT * FROM course_schedule WHERE scname = '$selectedCourse'");
      while($srow = mysqli_fetch_array($schedules  , MYSQLI_ASSOC))
      { 
@@ -79,40 +80,15 @@ if(isset($_POST["selectedCourse"]))
 <option value="6">Pazar</option>
 </select>
 </td>
-<td><select  class="rowInput" id="s_meets_at"  >
-<option value="9:00:00">9:00</option>
-<option value="10:00:00">10:00</option>
-<option value="11:00:00">11:00</option>
-<option value="12:00:00">12:00</option>
-<option value="13:00:00">13:00</option>
-<option value="14:00:00">14:00</option>
-<option value="15:00:00">15:00</option>
-<option value="16:00:00">16:00</option>
-<option value="17:00:00">17:00</option>
-<option value="18:00:00">18:00</option>
-<option value="19:00:00">19:00</option>
-<option value="20:00:00">20:00</option>
-</select>
+<td> 0
 </td>
-<td><select  class="rowInput" id="s_ends_at" >
-<option value="9:00:00">9:00</option>
-<option value="10:00:00">10:00</option>
-<option value="11:00:00">11:00</option>
-<option value="12:00:00">12:00</option>
-<option value="13:00:00">13:00</option>
-<option value="14:00:00">14:00</option>
-<option value="15:00:00">15:00</option>
-<option value="16:00:00">16:00</option>
-<option value="17:00:00">17:00</option>
-<option value="18:00:00">18:00</option>
-<option value="19:00:00">19:00</option>
-<option value="20:00:00">20:00</option>
-</select>
+<td> 1
 </td>
 <td>
-<input class="rowInput" style="margin:0px; padding:0px; height:30px; border:0;" type="text" id="s_class"><br>
+ 2
 </td>
-<td> <button class="rowInput"  id="addSessionButton"  onclick="addSession(this)">Ekle</button>  </td>
+<td> 3  </td>
+<td> 3  </td>
 </tr>';
 
 $courseSessions .= '</table>';
