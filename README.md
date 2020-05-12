@@ -1,7 +1,7 @@
 # bence.net
 Çevrimiçi Anket Sitesi - bence.net
 
-![](https://raw.githubusercontent.com/bilalguvenc/bence.net/master/images/youtube_thumbnail.png)
+[![Videoyu izlemek için tıklayın.](https://raw.githubusercontent.com/bilalguvenc/bence.net/master/images/youtube_thumbnail.png)](https://youtu.be/S5sR_pAn3Wg "![Videoyu izlemek için tıklayın.](https://raw.githubusercontent.com/bilalguvenc/bence.net/master/images/youtube_thumbnail.png)")
 
 ## Gerekli Yazılımlar
 - XAMPP https://www.apachefriends.org/tr/index.html (Bende kurulu olan sürüm: v3.2.4)
