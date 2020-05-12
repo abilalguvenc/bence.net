@@ -98,7 +98,7 @@ if(isset($_POST["selectedSurvey"]))
                               <input type="text" value="http://localhost/bence/anket.php?id='.$selectedSurvey.'" id="myInput">
                           </td> 
                           <td>
-                              <button onclick="copyLink()">Paylaş</button>
+                              <button onclick="copyLink()">Anket Bağlantı Adresini Kopyala</button>
                           </td>
                         </tr>';
 
