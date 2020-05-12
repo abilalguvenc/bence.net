@@ -18,6 +18,9 @@ if( isset($_SESSION['login']) )
             $sname            = $_POST['sname'];
             $info             = $_POST['info'];  
         
+            $sname = str_replace("'", "\'", $sname);
+            $info = str_replace("'", "\'", $info);
+
             $sql = "INSERT INTO survey (sid, sname, creator, cmail, info) VALUES ('$sid', '$sname', '$creator', '$cmail', '$info')";
             $result2 = mysqli_query($con, $sql);
             $result3 = mysqli_query($con, "UPDATE vars SET var='$sid' WHERE type='sid'");
@@ -34,6 +37,9 @@ if( isset($_SESSION['login']) )
             }else
             {
                 echo "Anket oluşturulamadı.";
+                echo "SQL Komutu: $sql \r\n";
+                echo "Hata Kodu: $result \r\n";
+                echo "<a href=\"javascript:history.go(-1)\">Geri Dön</a>";
                 header("Location:index.php");
             }
 

@@ -15,6 +15,11 @@ if( isset($_SESSION['login']) )
             $password = $_POST['new_password'];
             $taxnum   = $_POST['new_taxnumber'];
             $error = 0;
+            
+            $fname = str_replace("'", "\'", $fname);
+            $email = str_replace("'", "\'", $email);
+            $password = str_replace("'", "\'", $password);
+            $taxnum = str_replace("'", "\'", $taxnum);
 
             if($fname == null)     { $_SESSION["error_name"] = 2; $error = 1; } else
             {

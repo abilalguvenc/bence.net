@@ -23,7 +23,7 @@ while($row = mysqli_fetch_array($available , MYSQLI_ASSOC))
     $listAvailable .= '<input type="radio" checked="true" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $row["cname"] .'" >';
     }else
     //$rowcname = $row["cname"];
-    //$listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $rowcname.'" >';
+    $listAvailable .= '<input type="radio" name="radio" class="cid_allCourses" onclick="handleCheck(this);" value="'. $rowcname.'" >';
     $listAvailable .= '<span class="checkmark"></span>';
     $listAvailable .= '</label>';
 }

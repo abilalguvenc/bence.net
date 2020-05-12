@@ -15,6 +15,10 @@ if( isset($_SESSION['login']) )
             $password = $_POST['new_password'];
             $error = 0;
 
+            $name = str_replace("'", "\'", $name);
+            $email = str_replace("'", "\'", $email);
+            $password = str_replace("'", "\'", $password);
+
             if($name == null)     { $_SESSION["error_name"] = 2; $error = 1; }
             if($email == null)    { $_SESSION["error_mail"] = 2; $error = 1; } else 
             {
