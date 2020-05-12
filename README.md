@@ -26,4 +26,4 @@ CREATE TABLE `bence`.`answer_record` ( `sid` TEXT NOT NULL , `uid` TEXT NOT NULL
 CREATE TABLE `bence`.`vars` ( `type` TEXT NOT NULL , `var` TEXT NOT NULL ) ENGINE = InnoDB;
 INSERT INTO `vars` (`type`, `var`) VALUES ('sid', '0');
 ```
-- XAMPP ile yayınlanan siteye http://localhost/bence/ adresi üzerinden ulaşabilirsiniz.
+### XAMPP ile yayınlanan siteye http://localhost/bence/ adresi üzerinden ulaşabilirsiniz.
